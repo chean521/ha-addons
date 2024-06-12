@@ -1,0 +1,4 @@
+# https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
+name: Oscar Loh's Home Assistant Add-ons
+url: 'https://github.com/chean521/ha-addons'
+maintainer: Oscar Loh

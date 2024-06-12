@@ -1,0 +1,24 @@
+name: "Docker Socket Proxy - HASS Add On"
+description: >-
+  "Docker socket proxy forked from Tecnativa"
+version: "1.0.0"
+init: false
+slug: "socketproxy"
+panel_icon: mdi:docker
+ports:
+  2375/tcp: 2376
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+startup: services
+privileged: 
+  - SYS_ADMIN
+  - SYS_RESOURCE
+  - NET_ADMIN
+environment:
+
+map:
+  - /var/run/docker.sock:ro
+image: tecnativa/docker-socket-proxy:latest
