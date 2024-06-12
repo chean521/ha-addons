@@ -43,4 +43,4 @@ environment:
   SYSTEM: "1"
 host_pid: true
 docker_api: true
-image: "haproxy"
+image: "haproxytech/haproxy-alpine:3.0"
