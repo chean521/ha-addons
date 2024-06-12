@@ -31,6 +31,7 @@ environment:
   GRPC: "0"
   IMAGES: "0"
   INFO: "1"
+  SOCKET_PATH: "/run/docker.sock"
   LOG_LEVEL: "info"
   PING: "1"
   PLUGINS: "0"
