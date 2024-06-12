@@ -20,27 +20,27 @@ privileged:
   - SYS_RESOURCE
   - NET_ADMIN
 environment:
-  - ALLOW_RESTARTS=0
-  - ALLOW_START=0
-  - ALLOW_STOP=0
-  - AUTH=0
-  - BUILD=0
-  - COMMIT=0
-  - CONFIGS=0
-  - CONTAINERS=1
-  - DISABLE_IPV6=0
-  - DISTRIBUTION=0
-  - EVENTS=1
-  - EXEC=0
-  - GRPC=0
-  - IMAGES=0
-  - INFO=1
-  - LOG_LEVEL=info
-  - PING=1
-  - PLUGINS=0
-  - POST=0
-  - VERSION=1
-  - SYSTEM=1
+  ALLOW_RESTARTS: "0"
+  ALLOW_START: "0"
+  ALLOW_STOP: "0"
+  AUTH: "0"
+  BUILD: "0"
+  COMMIT: "0"
+  CONFIGS: "0"
+  CONTAINERS: "1"
+  DISABLE_IPV6: "0"
+  DISTRIBUTION: "0"
+  EVENTS: "1"
+  EXEC: "0"
+  GRPC: "0"
+  IMAGES: "0"
+  INFO: "1"
+  LOG_LEVEL: "info"
+  PING: "1"
+  PLUGINS: "0"
+  POST: "0"
+  VERSION: "1"
+  SYSTEM: "1"
 host_pid: true
 docker_api: true
-image: haproxy:2.2-alpine
+image: "haproxy"
