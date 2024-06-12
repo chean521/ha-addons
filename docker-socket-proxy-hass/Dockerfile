@@ -1,4 +1,5 @@
-FROM haproxytech/haproxy-alpine:3.0
+FROM tecnativa/docker-socket-proxy:0.1.2
+WORKDIR /usr/local
 
 EXPOSE 2375
 ENV ALLOW_RESTARTS=1 \
@@ -25,14 +26,9 @@ ENV ALLOW_RESTARTS=1 \
     SECRETS=1 \
     SERVICES=1 \
     SESSION=1 \
-    SOCKET_PATH=/var/run/docker.sock \
+    SOCKET_PATH=/run/docker.sock \
     SWARM=1 \
     SYSTEM=1 \
     TASKS=1 \
     VERSION=1 \
     VOLUMES=1
-
-COPY rootfs /
-
-RUN sed -i 's/\r$//' /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x //usr/local/etc/haproxy/haproxy.cfg.template

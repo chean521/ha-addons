@@ -1,7 +1,7 @@
 name: "Docker Socket Proxy - HASS Add On"
 description: >-
   "Docker socket proxy forked from Tecnativa"
-version: "3.0"
+version: "0.1.2"
 init: false
 slug: "socketproxy"
 panel_icon: mdi:docker
@@ -15,10 +15,6 @@ arch:
 startup: services
 full_access: true
 apparmor: false
-privileged: 
-  - SYS_ADMIN
-  - SYS_RESOURCE
-  - NET_ADMIN
 environment:
   ALLOW_RESTARTS: "0"
   ALLOW_START: "0"
@@ -43,4 +39,4 @@ environment:
   SYSTEM: "1"
 host_pid: true
 docker_api: true
-image: "haproxytech/haproxy-alpine"
+image: "tecnativa/docker-socket-proxy"
