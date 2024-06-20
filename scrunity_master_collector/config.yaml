@@ -11,7 +11,6 @@ arch:
   - armhf
   - armv7
 startup: services
-full_access: true
 hassio_role: admin
 privileged:
   - NET_ADMIN
@@ -30,9 +29,9 @@ environment:
 host_pid: true
 docker_api: true
 udev: true
+journald: true
 devices:
   - /dev/sda
-journald: true
 map:
   - config:rw
 image: "ghcr.io/analogj/scrutiny"
