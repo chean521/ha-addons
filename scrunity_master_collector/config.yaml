@@ -26,4 +26,7 @@ docker_api: true
 udev: true
 devices:
   - /dev/sda
+journald: true
+map:
+  - config:rw
 image: "ghcr.io/analogj/scrutiny"

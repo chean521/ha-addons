@@ -4,6 +4,7 @@
   </a>
 </p>
 
+
 # scrutiny
 
 [![CI](https://github.com/AnalogJ/scrutiny/workflows/CI/badge.svg?branch=master)](https://github.com/AnalogJ/scrutiny/actions?query=workflow%3ACI)
@@ -55,12 +56,12 @@ Scrutiny is a simple but focused application, with a couple of core features:
 Scrutiny uses `smartctl --scan` to detect devices/drives.
 
 - All RAID controllers supported by `smartctl` are automatically supported by Scrutiny.
-  - While some RAID controllers support passing through the underlying SMART data to `smartctl` others do not.
-  - In some cases `--scan` does not correctly detect the device type, returning [incomplete SMART data](https://github.com/AnalogJ/scrutiny/issues/45).
+    - While some RAID controllers support passing through the underlying SMART data to `smartctl` others do not.
+    - In some cases `--scan` does not correctly detect the device type, returning [incomplete SMART data](https://github.com/AnalogJ/scrutiny/issues/45).
     Scrutiny supports overriding detected device type via the config file: see [example.collector.yaml](https://github.com/AnalogJ/scrutiny/blob/master/example.collector.yaml)
 - If you use docker, you **must** pass though the RAID virtual disk to the container using `--device` (see below)
-  - This device may be in `/dev/*` or `/dev/bus/*`.
-  - If you're unsure, run `smartctl --scan` on your host, and pass all listed devices to the container.
+    - This device may be in `/dev/*` or `/dev/bus/*`.
+    - If you're unsure, run `smartctl --scan` on your host, and pass all listed devices to the container.
 
 See [docs/TROUBLESHOOTING_DEVICE_COLLECTOR.md](./docs/TROUBLESHOOTING_DEVICE_COLLECTOR.md) for help
 
@@ -84,7 +85,7 @@ docker run -it --rm -p 8080:8080 -p 8086:8086 \
 
 - `/run/udev` is necessary to provide the Scrutiny collector with access to your device metadata
 - `--cap-add SYS_RAWIO` is necessary to allow `smartctl` permission to query your device SMART data
-  - NOTE: If you have **NVMe** drives, you must add `--cap-add SYS_ADMIN` as well. See issue [#26](https://github.com/AnalogJ/scrutiny/issues/26#issuecomment-696817130)
+    - NOTE: If you have **NVMe** drives, you must add `--cap-add SYS_ADMIN` as well. See issue [#26](https://github.com/AnalogJ/scrutiny/issues/26#issuecomment-696817130)
 - `--device` entries are required to ensure that your hard disk devices are accessible within the container.
 - `ghcr.io/analogj/scrutiny:master-omnibus` is a omnibus image, containing both the webapp server (frontend & api) as well as the S.M.A.R.T metric collector. (see below)
 
@@ -145,7 +146,6 @@ docker exec scrutiny /opt/scrutiny/bin/scrutiny-collector-metrics run
 ```
 
 # Configuration
-
 By default Scrutiny looks for its YAML configuration files in `/opt/scrutiny/config`
 
 There are two configuration files available:
@@ -156,7 +156,6 @@ There are two configuration files available:
 Neither file is required, however if provided, it allows you to configure how Scrutiny functions.
 
 ## Cron Schedule
-
 Unfortunately the Cron schedule cannot be configured via the `collector.yaml` (as the collector binary needs to be trigged by a scheduler/cron).
 However, if you are using the official `ghcr.io/analogj/scrutiny:master-collector` or `ghcr.io/analogj/scrutiny:master-omnibus` docker images,
 you can use the `COLLECTOR_CRON_SCHEDULE` environmental variable to override the default cron schedule (daily @ midnight - `0 0 * * *`).
@@ -166,7 +165,6 @@ you can use the `COLLECTOR_CRON_SCHEDULE` environmental variable to override the
 ## Notifications
 
 Scrutiny supports sending SMART device failure notifications via the following services:
-
 - Custom Script (data provided via environmental variables)
 - Email
 - Webhooks
@@ -197,7 +195,6 @@ curl -X POST http://localhost:8080/api/health/notify
 ```
 
 # Debug mode & Log Files
-
 Scrutiny provides various methods to change the log level to debug and generate log files.
 
 ## Web Server/API
@@ -240,18 +237,19 @@ scrutiny-collector-metrics run --debug --log-file /tmp/collector.log
 
 # Supported Architectures
 
-| Architecture Name | Binaries | Docker                                                                     |
-| ----------------- | -------- | -------------------------------------------------------------------------- |
-| linux-amd64       | ✅       | ✅                                                                         |
-| linux-arm-5       | ✅       |                                                                            |
-| linux-arm-6       | ✅       |                                                                            |
-| linux-arm-7       | ✅       | web/collector only. see[#236](https://github.com/AnalogJ/scrutiny/issues/236) |
-| linux-arm64       | ✅       | ✅                                                                         |
-| freebsd-amd64     | ✅       |                                                                            |
-| macos-amd64       | ✅       | ✅                                                                         |
-| macos-arm64       | ✅       | ✅                                                                         |
-| windows-amd64     | ✅       | WIP, see[#15](https://github.com/AnalogJ/scrutiny/issues/15)                  |
-| windows-arm64     | ✅       |                                                                            |
+| Architecture Name | Binaries | Docker |
+| --- | --- | --- |
+| linux-amd64 | :white_check_mark: | :white_check_mark: |
+| linux-arm-5 | :white_check_mark: |  |
+| linux-arm-6 | :white_check_mark: |  |
+| linux-arm-7 | :white_check_mark: | web/collector only. see [#236](https://github.com/AnalogJ/scrutiny/issues/236)  |
+| linux-arm64 | :white_check_mark: | :white_check_mark: |
+| freebsd-amd64 | :white_check_mark: |  |
+| macos-amd64 | :white_check_mark: | :white_check_mark: |
+| macos-arm64 | :white_check_mark: | :white_check_mark: |
+| windows-amd64 | :white_check_mark: | WIP, see [#15](https://github.com/AnalogJ/scrutiny/issues/15) |
+| windows-arm64 | :white_check_mark: |  |
+
 
 # Contributing
 
