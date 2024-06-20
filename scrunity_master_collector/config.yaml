@@ -4,7 +4,8 @@ description: >-
 version: "master-collector"
 init: false
 slug: "scrutiny"
-panel_icon: mdi:docker
+panel_icon: mdi:glasses
+ingress: true
 arch:
   - aarch64
   - amd64
@@ -12,26 +13,21 @@ arch:
   - armv7
 startup: services
 hassio_role: admin
+full_access: true
 privileged:
-  - NET_ADMIN
   - SYS_ADMIN
   - SYS_RAWIO
   - SYS_TIME
-  - SYS_NICE
   - DAC_READ_SEARCH
-apparmor: false
+apparmor: true
 environment:
   COLLECTOR_API_ENDPOINT: "http://192.168.1.126:8083"
   COLLECTOR_CRON_SCHEDULE: "*/10 * * * *"
   COLLECTOR_HOST_ID: "jollylife_ha"
-  PUID: "0"
-  PGID: "0"
 host_pid: true
 docker_api: true
 udev: true
 journald: true
-devices:
-  - /dev/sda
 map:
   - config:rw
 image: "ghcr.io/analogj/scrutiny"
